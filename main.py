@@ -51,7 +51,7 @@ def track_iss():
                 connection.login(user=EMAIL, password=PASSWORD)
                 connection.sendmail(
                     from_addr=EMAIL,
-                    to_addrs="Oliverdemarche839@gmail.com",
+                    to_addrs=EMAIL,
                     msg=f"Subject: ISS Tracker Communication\n\n The ISS Spacial Station pass through the sky up to you in latitude {iss[1]} and longitude {iss[2]}."
                 )
     try:
