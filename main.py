@@ -46,14 +46,17 @@ def track_iss():
     if is_night():
         iss = iss_overhead()
         if iss[0]:
-            with smtplib.SMTP("smtp.gmail.com.") as connection:
-                connection.starttls()
-                connection.login(user=EMAIL, password=PASSWORD)
-                connection.sendmail(
-                    from_addr=EMAIL,
-                    to_addrs=EMAIL,
-                    msg=f"Subject: ISS Tracker Communication\n\n The ISS Spacial Station pass through the sky up to you in latitude {iss[1]} and longitude {iss[2]}."
-                )
+            try:
+                with smtplib.SMTP("smtp.gmail.com.") as connection:
+                    connection.starttls()
+                    connection.login(user=EMAIL, password=PASSWORD)
+                    connection.sendmail(
+                        from_addr=EMAIL,
+                        to_addrs=EMAIL,
+                        msg=f"Subject: ISS Tracker Communication\n\n The ISS Spacial Station pass through the sky up to you in latitude {iss[1]} and longitude {iss[2]}."
+                    )
+            except Exception as e:
+                print(f"Erreur lors de la fonction : {str(e)}")
     try:
         print(f"ISS Latitude : {iss[1]}")
         print(f"ISS Longitude : {iss[2]}\n")
